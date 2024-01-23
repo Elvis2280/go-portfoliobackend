@@ -16,7 +16,7 @@ func GetTags(response http.ResponseWriter, request *http.Request) {
 		log.Fatalf("Could not connect to DB: %v", err)
 	}
 
-	listTags := db.Model(tags).Find(&tags)
+	listTags := db.Model(tags).Find(&tags) // Find all tags and set to tags variable
 
 	if listTags.Error != nil { // If there is an error, log it
 		response.WriteHeader(http.StatusInternalServerError)
@@ -24,8 +24,8 @@ func GetTags(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	listJson, errJson := json.Marshal(listTags) // Convert to JSON
-	if errJson != nil {                         // If there is an error, log it
+	listJson, errJson := json.Marshal(tags) // Convert to JSON
+	if errJson != nil {                     // If there is an error, log it
 		log.Fatalf("Could not convert to JSON: %v", errJson)
 	}
 

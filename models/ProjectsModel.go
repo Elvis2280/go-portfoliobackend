@@ -1,9 +1,9 @@
 package models
 
+import "gorm.io/gorm"
+
 type Project struct {
-	Id          int    `json:"id" gorm:"primaryKey" gorm:"autoIncrement"`
-	createdAt   string `json:"createdAt" gorm:"autoCreateTime"`
-	updatedAt   string `json:"updatedAt"`
+	gorm.Model
 	Title       string `json:"title" gorm:"unique"`
 	Description string `json:"description"`
 	Content     string `json:"content"`
